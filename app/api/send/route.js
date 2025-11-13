@@ -67,21 +67,27 @@ export async function POST(req) {
     }
 
     
-    const { data, error } = await resend.emails.send({
-      from: "Hemanth <onboarding@resend.dev>", // Use your verified sender
-      to: ["saihemanthnk07@gmail.com"], // Your inbox (where you’ll receive the message)
-      subject: `New message: ${subject}`,
+   const { data, error } = await resend.emails.send({
+      from: "Hemanth <onboarding@resend.dev>", // Must be a verified sender
+      to: ["saihemanthnk07@gmail.com"], // Your inbox
+      subject: `New Message from Your Portfolio Website: ${subject}`,
       html: `
-        <div style="font-family: Arial, sans-serif; color: #333;">
-          <h2>New Contact Message</h2>
-          <p><strong>From:</strong> ${email}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <p><strong>Message:</strong></p>
-          <blockquote style="border-left: 3px solid #7c3aed; padding-left: 10px; margin-top: 10px;">
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h2 style="color: #0070f3;">Hi Hemanth,</h2>
+          <p>You just received a new message through your portfolio website.</p>
+          <p><strong>Message Details:</strong></p>
+          <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Subject:</strong> ${subject}</li>
+          </ul>
+          <p style="margin-top: 10px;">Here’s the message:</p>
+          <blockquote style="border-left: 3px solid #0070f3; margin: 10px 0; padding-left: 10px; color: #555;">
             ${message}
           </blockquote>
-          <hr style="margin-top:20px; border:none; border-top:1px solid #eee;">
-          <p style="font-size: 12px; color: #888;">This message was sent from your portfolio contact form.</p>
+          <p>Best regards,<br>${name}</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+          <p style="font-size: 12px; color: #999;">This message was sent automatically from your portfolio contact form.</p>
         </div>
       `,
     });
